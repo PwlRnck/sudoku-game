@@ -19,7 +19,7 @@ public class RunSudoku {
                     FunctionKeys.KEYBOARD.key(), FunctionKeys.FILE.key());
             answer = scanner.nextLine();
 
-            if (answer.equals("k")) {
+            if (answer.equals(FunctionKeys.KEYBOARD.key())) {
                 System.out.println("Please enter sudoku numbers in the form: \"x,y,z\", where:" +
                         "\nx - number of sudoku board row [1-9];" +
                         "\ny - number of sudoku board column [1-9];" +
