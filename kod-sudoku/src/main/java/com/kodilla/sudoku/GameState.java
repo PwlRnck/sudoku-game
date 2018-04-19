@@ -10,7 +10,7 @@ public class GameState {
         try {
             this.theBoard = theBoard.deepCopy();
         } catch (CloneNotSupportedException e) {
-
+            new RuntimeException(e);
         }
         this.xCoordinate = xCoordinate;
         this.yCoordinate = yCoordinate;

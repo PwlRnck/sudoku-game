@@ -118,16 +118,20 @@ public class SudokuGame {
 
     private void checkNumbers(int i, int j, SudokuBoard.Block block, Set<Integer> filledInNumbers, Set<Integer> availableNumbers) {
         for (int k = 0; k < 9; k++) {
-            filledInNumbers.add(theBoard.getRows().get(i).getElements().get(k).getValue());
-            filledInNumbers.add(theBoard.getRows().get(k).getElements().get(j).getValue());
+            filledInNumbers.add(element(i,k).getValue());
+            filledInNumbers.add(element(k,j).getValue());
             filledInNumbers.add(theBoard.getRows().get(block.getCoordinates().get(k).get(0))
                     .getElements().get(block.getCoordinates().get(k).get(1)).getValue());
 
-            availableNumbers.addAll(theBoard.getRows().get(i).getElements().get(k).getValueSet());
-            availableNumbers.addAll(theBoard.getRows().get(k).getElements().get(j).getValueSet());
+            availableNumbers.addAll(element(i,k).getValueSet());
+            availableNumbers.addAll(element(k,j).getValueSet());
             availableNumbers.addAll(theBoard.getRows().get(block.getCoordinates().get(k).get(0))
                     .getElements().get(block.getCoordinates().get(k).get(1)).getValueSet());
         }
+    }
+
+    private SudokuElement element(int a, int b) {
+        return theBoard.getRows().get(a).getElements().get(b);
     }
 
     private void restoreTheBoard() {

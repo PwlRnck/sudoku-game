@@ -16,7 +16,11 @@ public class ChooseFile {
 
     public File getFile() {
         JFileChooser fc = new JFileChooser();
-        fc.setCurrentDirectory(getExecutionPath());
+        ClassLoader classLoader = getClass().getClassLoader();
+
+        //fc.setCurrentDirectory(getExecutionPath()); //alternative method
+        fc.setCurrentDirectory(new File(classLoader.getResource("files").getPath()));
+
         if (JFileChooser.APPROVE_OPTION == fc.showOpenDialog(null)) {
             frame.setVisible(false);
             return fc.getSelectedFile();
@@ -33,6 +37,7 @@ public class ChooseFile {
 
     }
 
+    //https://stackoverflow.com/a/12715491
     public File getExecutionPath() {
         String absolutePath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
         absolutePath = absolutePath.substring(0, absolutePath.lastIndexOf("/"));
